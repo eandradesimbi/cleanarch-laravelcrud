@@ -28,6 +28,11 @@ Route::group(["prefix" => "authors"], function () {
     Route::post("", CreateAuthorController::class);
 });
 
+Route::group(["prefix" => "products"], function(){
+    /*Route::get();
+    Route::post();*/
+});
+
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
     return $request->user();
 });
