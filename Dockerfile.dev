@@ -1,5 +1,5 @@
 FROM php:8.1-fpm-alpine
-LABEL maintainer="Alan Matias <alanmatias@simbiose.social>"
+LABEL maintainer="Eduardo Andrade <eduardoandrade@simbi.social>"
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
