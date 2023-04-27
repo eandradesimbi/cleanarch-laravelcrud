@@ -4,6 +4,9 @@ use App\Http\Controllers\CreateAuthorController;
 use App\Http\Controllers\CreateBookController;
 use App\Http\Controllers\ListAllBooksController;
 use App\Http\Controllers\ListBooksByAuthorController;
+
+use App\Http\Controllers\CreateProductController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,8 +32,8 @@ Route::group(["prefix" => "authors"], function () {
 });
 
 Route::group(["prefix" => "products"], function(){
-    /*Route::get();
-    Route::post();*/
+    /*Route::get();*/
+    Route::post("", CreateProductController::class);
 });
 
 Route::middleware("auth:sanctum")->get("/user", function (Request $request) {
