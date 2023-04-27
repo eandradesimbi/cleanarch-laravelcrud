@@ -33,7 +33,7 @@ final class CreateProductService implements CreateProductUseCase
     {
         $this->validate($requestModel);
 
-        $productName = new ProductName($requestModel->getName(), $requestModel->getCategory());
+        $productName = new ProductName($requestModel->getName(), $requestModel->getCategory(), $requestModel->getQuantity());
         $product = $this->productRepository->create(new Product(name: $productName));
 
         return $this->output->present(new CreateProductResponseModel($product));
@@ -46,12 +46,12 @@ final class CreateProductService implements CreateProductUseCase
      */
     private function validate(CreateProductRequestModel $requestModel): void
     {
-        if (empty($requestModel->getFirstName())) {
+        /*if (empty($requestModel->getFirstName())) {
             throw new InvalidProductName();
         }
 
         if (empty($requestModel->getLastName())) {
             throw new InvalidProductName();
-        }
+        }*/
     }
 }

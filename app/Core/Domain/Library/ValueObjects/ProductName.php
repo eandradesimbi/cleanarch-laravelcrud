@@ -5,7 +5,7 @@ namespace App\Core\Domain\Library\ValueObjects;
 use App\Core\Common\ValueObjects\ValueObject;
 //use App\Core\Domain\Library\Exceptions\InvalidAuthorName;
 
-final class AuthorName implements ValueObject
+final class ProductName implements ValueObject
 {
     /**
      * @var string $name
@@ -28,7 +28,7 @@ final class AuthorName implements ValueObject
     {
         $this->name = $name;
         $this->category = $category;
-        $this->quantity = $quantity
+        $this->quantity = $quantity;
         //$this->validate();
     }
 
@@ -37,7 +37,7 @@ final class AuthorName implements ValueObject
      *
      * @throws InvalidAuthorName
      */
-    /*public function validate(): void
+    public function validate(): void
     {
         if (empty($this->firstName)) {
             throw new InvalidAuthorName();
@@ -46,5 +46,5 @@ final class AuthorName implements ValueObject
         if (empty($this->lastName)) {
             throw new InvalidAuthorName();
         }
-    }*/
+    }
 }

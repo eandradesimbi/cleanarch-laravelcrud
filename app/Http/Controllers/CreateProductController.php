@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Core\Domain\Library\Ports\UseCases\CreateProduct\{CreateProductRequestModel, CreateProductUseCase};
 use App\Http\Requests\CreateProductRequest;
+use Symfony\Component\HttpFoundation\Response;
 
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class CreateProductController extends Controller
      *
      *    @OA\Response(
      *      response=201,
-     *      description="Author Created",
+     *      description="Product Created",
      *      @OA\JsonContent(
      *        type="object",
      *        @OA\Property(
@@ -91,7 +92,7 @@ class CreateProductController extends Controller
      *    @OA\Response(response="403", description="Não autorizado",
      *      @OA\MediaType(
      *       mediaType="application/json",
-     *          @OA\Schema(ref="#/components/schemas/Unauthorized Error")
+     *          @OA\Schema(ref="#/components/schemas/UnProductized Error")
      *      )
      *    ),
      *    @OA\Response(response="500", description="Erro interno",
@@ -114,6 +115,7 @@ class CreateProductController extends Controller
     public function __invoke(CreateProductRequest $request)
     {
         
-        return $request;
+        $viewModel = $this->useCase->execute(new CreateProductRequestModel($request->validated()));
+        return response()->json($viewModel->getResponse(), Response::HTTP_CREATED);
     }
 }

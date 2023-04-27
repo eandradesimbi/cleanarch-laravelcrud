@@ -32,9 +32,9 @@ final class ProductMapper
     {
         return new DomainProduct(
             id: $product->id,
-            name: new ProductName($product->name),
-            createdAt: $Product->created_at,
-            updatedAt: $Product->updated_at,
+            name: new ProductName($product->name, $product->category, $product->quantity),
+            createdAt: $product->created_at,
+            updatedAt: $product->updated_at,
         );
     }
 }
