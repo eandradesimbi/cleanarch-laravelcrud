@@ -11,4 +11,6 @@ interface ProductRepository
      * @return Product
      */
     public function create(Product $product): Product;
+
+    public function getAll(): array;
 }
