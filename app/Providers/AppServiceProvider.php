@@ -6,22 +6,28 @@ use App\Adapters\Presenters\Library\CreateAuthorJsonPresenter;
 use App\Adapters\Presenters\Library\CreateBookJsonPresenter;
 use App\Adapters\Presenters\Library\ListAllBooksJsonPresenter;
 use App\Adapters\Presenters\Library\ListBooksByAuthorJsonPresenter;
+use App\Adapters\Presenters\Library\CreateProductJsonPresenter; //* *//
 use App\Core\Domain\Library\Ports\Persistence\AuthorRepository;
 use App\Core\Domain\Library\Ports\Persistence\BookRepository;
+use App\Core\Domain\Library\Ports\Persistence\ProductRepository; //* *//
 use App\Core\Domain\Library\Ports\UseCases\CreateAuthor\CreateAuthorUseCase;
 use App\Core\Domain\Library\Ports\UseCases\CreateBook\CreateBookUseCase;
 use App\Core\Domain\Library\Ports\UseCases\ListAllBooks\ListAllBooksUseCase;
 use App\Core\Domain\Library\Ports\UseCases\ListBooksByAuthor\ListBooksByAuthorUseCase;
+use App\Core\Domain\Library\Ports\UseCases\CreateProduct\CreateProductUseCase;
 use App\Core\Services\Library\CreateAuthorService;
 use App\Core\Services\Library\CreateBookService;
 use App\Core\Services\Library\ListAllBooksService;
 use App\Core\Services\Library\ListBooksByAuthorService;
+use App\Core\Services\Library\CreateProductService;
 use App\Http\Controllers\CreateAuthorController;
 use App\Http\Controllers\CreateBookController;
 use App\Http\Controllers\ListAllBooksController;
 use App\Http\Controllers\ListBooksByAuthorController;
+use App\Http\Controllers\CreateProductController; //* *//
 use App\Infra\Adapters\Persistence\Eloquent\Repositories\AuthorEloquentRepository;
 use App\Infra\Adapters\Persistence\Eloquent\Repositories\BookEloquentRepository;
+use App\Infra\Adapters\Persistence\Eloquent\Repositories\ProductEloquentRepository; //* *//
 use Illuminate\Support\ServiceProvider;
 use Laravel\Sanctum\Sanctum;
 
@@ -46,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
          */
         $this->app->bind(AuthorRepository::class, AuthorEloquentRepository::class);
         $this->app->bind(BookRepository::class, BookEloquentRepository::class);
+        $this->app->bind(ProductRepository::class, ProductEloquentRepository::class);
     }
 
     /**
@@ -59,6 +66,15 @@ class AppServiceProvider extends ServiceProvider
             ->give(
                 fn($app) => $app->make(CreateAuthorService::class, [
                     "output" => $app->make(CreateAuthorJsonPresenter::class),
+                ]),
+            );
+
+        $this->app
+            ->when(CreateProductController::class)
+            ->needs(CreateProductUseCase::class)
+            ->give(
+                fn($app) => $app->make(CreateProductService::class, [
+                    "output" => $app->make(CreateProductJsonPresenter::class),
                 ]),
             );
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Core\Domain\Library\Ports\UseCases\CreateProduct\{CreateProductRequestModel, CreateProductUseCase};
 use App\Http\Requests\CreateProductRequest;
 
 use Illuminate\Http\Request;
@@ -13,7 +14,7 @@ class CreateProductController extends Controller
     /**
      * @param CreateProductUseCase $useCase
      */
-    public function __construct()
+    public function __construct(private CreateProductUseCase $useCase)
     {
     }
 
