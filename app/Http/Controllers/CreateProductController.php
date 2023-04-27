@@ -114,7 +114,6 @@ class CreateProductController extends Controller
      */
     public function __invoke(CreateProductRequest $request)
     {
-        
         $viewModel = $this->useCase->execute(new CreateProductRequestModel($request->validated()));
         return response()->json($viewModel->getResponse(), Response::HTTP_CREATED);
     }

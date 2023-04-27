@@ -29,22 +29,22 @@ final class ProductName implements ValueObject
         $this->name = $name;
         $this->category = $category;
         $this->quantity = $quantity;
-        //$this->validate();
+        $this->validate();
     }
 
     /**
      * @return void
      *
-     * @throws InvalidAuthorName
+     * 
      */
     public function validate(): void
     {
-        if (empty($this->firstName)) {
+       /* if (empty($this->firstName)) {
             throw new InvalidAuthorName();
         }
 
         if (empty($this->lastName)) {
             throw new InvalidAuthorName();
-        }
+        }*/
     }
 }
