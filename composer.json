@@ -1,0 +1,99 @@
+{
+    "name": "laravel/laravel",
+    "type": "project",
+    "description": "The Laravel Framework.",
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
+    "license": "MIT",
+    "require": {
+        "php": "^8.1.0",
+        "ans-group/laravel-health-check": "^1.13",
+        "darkaonline/l5-swagger": "^8.4",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.43",
+        "laravel/sanctum": "^3.0",
+        "laravel/tinker": "^2.7",
+        "ramsey/uuid": "^4.6"
+    },
+    "require-dev": {
+        "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "nunomaduro/larastan": "^2.1",
+        "nunomaduro/phpinsights": "^2.6",
+        "phpstan/phpstan": "^1.9",
+        "phpunit/phpunit": "^9.5.10",
+        "slevomat/coding-standard": "7.2",
+        "spatie/laravel-ignition": "^1.0",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/",
+            "App\\Core\\Common\\Entities\\": "app/Core/Common/Entities",
+            "App\\Core\\Common\\ValueObjects\\": "app/Core/Common/ValueObjects",
+            "App\\Core\\Domain\\Library\\Entities\\": "app/Core/Domain/Library/Entities",
+            "App\\Infra\\Adapter\\": "app/Infra/Adapters",
+            "App\\Infra\\Models\\": "app/Infra/Adapters/Persistence/Models"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "tests": [
+            "@tests:phpstan",
+            "@tests:phpunit",
+            "@tests:phpcs",
+            "@tests:phpinsights"
+        ],
+        "tests:phpstan": [
+            "@php ./vendor/bin/phpstan analyse --ansi --memory-limit 256M"
+        ],
+        "tests:phpcs": [
+            "vendor/bin/phpcs -w -p --report=code --colors --report-width=80 --standard=phpcs.xml --ignore=resources/lang,resources/views,bootstrap/helpers,database/migrations,app/Console,bin app/, .docker/"
+        ],
+        "tests:phpunit": [
+            "php artisan test --coverage-html reports/"
+        ],
+        "tests:phpinsights": [
+            "@php ./vendor/bin/phpinsights -v --config-path='config/insights.php' --fix --disable-security-check"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": []
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
