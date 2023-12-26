@@ -4,10 +4,10 @@ namespace App\Adapters\Presenters\Library;
 
 use App\Adapters\ViewModel\JsonResourceViewModel;
 use App\Core\Common\Ports\ViewModel;
-use App\Core\Domain\Library\Ports\UseCases\ListProduct\{ListProductOutputPort, ListProductsResponseModel};
+use App\Core\Domain\Library\Ports\UseCases\ListProduct\{ListProductsOutputPort, ListProductsResponseModel};
 use App\Http\Resources\Library\ListProductsResource;
 
-final class ListProductsJsonPresenter implements ListProductOutputPort{
+final class ListProductsJsonPresenter implements ListProductsOutputPort{
 
     /**
      * Summary of present

@@ -6,6 +6,7 @@ use App\Http\Controllers\ListAllBooksController;
 use App\Http\Controllers\ListBooksByAuthorController;
 
 use App\Http\Controllers\CreateProductController;
+use App\Http\Controllers\ListProductController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,7 +33,7 @@ Route::group(["prefix" => "authors"], function () {
 });
 
 Route::group(["prefix" => "products"], function(){
-    /*Route::get();*/
+    Route::get("", ListProductController::class);
     Route::post("", CreateProductController::class);
 });
 

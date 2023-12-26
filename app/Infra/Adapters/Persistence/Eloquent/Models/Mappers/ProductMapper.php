@@ -37,4 +37,8 @@ final class ProductMapper
             updatedAt: $product->updated_at,
         );
     }
+
+    public static function toManyDomainEntities(array $products): array{
+        return array_map(static fn ($product) => self::toDomainEntity($product), $products);
+    }
 }

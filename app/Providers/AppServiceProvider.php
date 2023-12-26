@@ -16,7 +16,7 @@ use App\Core\Domain\Library\Ports\UseCases\CreateBook\CreateBookUseCase;
 use App\Core\Domain\Library\Ports\UseCases\ListAllBooks\ListAllBooksUseCase;
 use App\Core\Domain\Library\Ports\UseCases\ListBooksByAuthor\ListBooksByAuthorUseCase;
 use App\Core\Domain\Library\Ports\UseCases\CreateProduct\CreateProductUseCase;
-use App\Core\Domain\Library\Ports\UseCases\ListProduct\ListProducstUseCase;
+use App\Core\Domain\Library\Ports\UseCases\ListProduct\ListProductsUseCase;
 use App\Core\Services\Library\CreateAuthorService;
 use App\Core\Services\Library\CreateBookService;
 use App\Core\Services\Library\ListAllBooksService;
@@ -76,7 +76,7 @@ class AppServiceProvider extends ServiceProvider
 
         $this->app
             ->when(ListProductController::class)
-            ->needs(ListProducstUseCase::class)
+            ->needs(ListProductsUseCase::class)
             ->give(
                 fn($app) => $app->make(ListProductsService::class, [
                     "output" => $app->make(ListProductsJsonPresenter::class)

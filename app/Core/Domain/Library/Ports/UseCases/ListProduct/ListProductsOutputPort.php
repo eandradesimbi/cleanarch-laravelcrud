@@ -4,7 +4,7 @@ namespace App\Core\Domain\Library\Ports\UseCases\ListProduct;
 
 use App\Core\Common\Ports\ViewModel;
 
-interface ListProductOutputPort{
+interface ListProductsOutputPort{
 
      /**
       * Summary of present
